@@ -1,0 +1,278 @@
+/*=======================
+|UNIVERSAL STYLES
+========================*/
+
+html {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+}
+
+// ------------- UNIVERSAL STYLE FOR LOGIN,REGISTER,ADD PRODUCT
+.login-form,
+.product-form {
+    padding: 0;
+    .nav-tabs {
+        border-bottom: 0;
+        li {
+            width: 100%;
+            text-align: center;
+            p {
+                font-size: 2rem;
+                border-radius: 0;
+                margin: 0;
+                padding: 1.5rem 0;
+                background: rgba(255, 255, 255, 0.6);
+            }
+        }
+        .active {
+            a {
+                border: 0;
+            }
+        }
+    }
+    .tab-content {
+        padding: 5rem 4rem 2rem;
+        form {
+            .form-group {
+                .input-group {
+                    margin: 1rem 0;
+                    width: 100%;
+                    .input-group-addon {
+                        width: 4.5rem;
+                        border-radius: 0;
+                        border: 0;
+                        color: #fff;
+                        background: #949494;
+                    }
+                    .form-control {
+                        background-color: rgba(148, 148, 148, 0.45);
+                        border-radius: 0;
+                        box-shadow: none;
+                        border-top: 0;
+                        border-left: 0;
+                        border-right: 0;
+                        padding: 2rem 1rem;
+                        font-size: 1.8rem;
+                    }
+                }
+                label {
+                    font-size: 1.8rem;
+                    font-weight: 100;
+                }
+            }
+            .checkbox {
+                margin: 2rem 0;
+                label {
+                    font-size: 1.8rem;
+                }
+            }
+        }
+    }
+}
+
+
+/*=======================
+|HELPING CSS
+=======================*/
+
+.right {
+    float: right;
+}
+
+.padding-2 {
+    padding: 2rem 0;
+}
+
+.padding-25 {
+    padding: 25px 0;
+}
+
+.margin-2 {
+    margin: 2% 0 0;
+}
+
+.margin-15 {
+    margin: 15% auto;
+}
+
+.margin-top-2 {
+    margin-top: 2%;
+}
+
+// --------------------  BUTTON STYLES ---------------------------
+.btn {
+    border-radius: 0;
+    border: 0;
+}
+
+// 
+// --------------------- LOGING PAGE STYLES ----------------------
+// 
+// --------------- LOGIN FORM
+#login {
+    h2 {
+        margin-top: 10rem;
+    }
+    .login-form {
+        margin-top: 5rem;
+        background: rgba(221, 221, 221, 0.5);
+        button {
+            font-size: 1.8rem;
+            padding: 1.8rem 2rem;
+            width: 130%;
+            margin-left: -6rem;
+            background: #f5f5f5;
+        }
+        button:before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-bottom: 2rem solid #f5f5f5;
+            border-right: 2.2rem solid transparent;
+            position: absolute;
+            top: 32.9rem;
+            right: -2.2rem;
+        }
+        button:after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-bottom: 2rem solid #f5f5f5;
+            border-left: 2.1rem solid transparent;
+            position: absolute;
+            top: 32.9rem;
+            left: -2.1rem;
+        }
+    }
+}
+
+// 
+// ------------------------ ADMIN PANEL ----------------------
+//
+// ----------- ADD USER
+.register-form,
+.product-form{
+    margin-top: 5rem;
+    form {
+        // .user-type {
+        //     padding-bottom: 1rem;
+        //     margin-bottom: 1rem;
+        //     border-bottom: 1px solid #ddd;
+        //     .input-group {
+        //         width: 25%;
+        //         display: inline-block;
+        //         border: 1px solid cadetblue;
+        //         margin-right: 2rem !important;
+        //         border-radius: 5px;
+        //         label {
+        //             margin: 0;
+        //             padding: 1rem 2rem;
+        //         }
+        //     }
+        // }
+        .form-group {
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+            margin-bottom: 3rem;
+            .input-group {
+                width: 100%;
+                border: 1px solid cadetblue;
+                border-radius: 5px;
+                .input-group-addon {
+                    background: transparent;
+                    color: cadetblue;
+                    border: 0;
+                }
+                .form-control {
+                    border: 0;
+                    border-radius: 5px;
+                }
+            }
+        }
+        label {
+            font-size: 1.8rem;
+            font-weight: 100;
+        }
+    }
+    .checkbox {
+        margin: 2rem 0;
+        label {
+            font-size: 1.8rem;
+        }
+    }
+    .register-btn {
+        float: right;
+        margin-top: 2rem;
+        font-size: 1.8rem;
+        padding: 1.5rem 2rem;
+        width: 25% !important;
+        border:1px solid cadetblue;
+        color: cadetblue;
+        transition: background 0.3s ease-in-out,color 0.2s ease-in-out;
+    }
+    .register-btn:hover {
+        background: cadetblue;
+        color: #fff;
+        border: 1px solid cadetblue;
+    }
+}
+
+// ---------------- ADD PRODUCT
+
+.product-form{
+    .form-group{
+        .unit_list{
+            label{
+                margin-top: .5rem;
+                margin-right: 2rem;
+            }
+        }
+    }
+}
+
+// 
+// ---------------------- MAIN PAGE STYLES -----------------------
+// 
+
+/*=====================
+|NAVBAR styles 
+=====================*/
+.navbar-default {
+    .navbar-right {
+        li {
+            width: 15rem;
+            a {
+                padding: 1rem 0 0;
+                span {
+                    display: inline;
+                    font-size: 0px;
+                }
+                img {
+                    width: 3rem;
+                    display: inline;
+                    margin: 0 1rem;
+                }
+            }
+        }
+    }
+}
+// ---------------- Footer
+footer {
+    position: absolute;
+    bottom: 0;
+    background: cadetblue;
+    left: 0;
+    right: 0;
+    padding: 2rem 0;
+    color: #fff;
+    font-size: 1.6rem;
+    p {
+        margin-bottom: 0;
+    }
+}

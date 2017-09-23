@@ -1,0 +1,99 @@
+/*=======================
+|UNIVERSAL STYLES
+========================*/
+
+html {
+    position: relative;
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/*=======================
+|HELPING CSS
+=======================*/
+
+.padding-25 {
+    padding: 25px 0;
+}
+
+.margin-2 {
+    margin: 2% 0 0;
+}
+
+.margin-15 {
+    margin: 15% auto;
+}
+
+.margin-top-2 {
+    margin-top: 2%;
+}
+
+// 
+// --------------------- LOGING PAGE STYLES ----------------------
+// 
+// --------------- LOGIN FORM
+.login-form {
+    padding: 10rem 3rem;
+    .nav-tabs {
+        li {
+            width: 50%;
+            text-align: center;
+        }
+    }
+    .tab-content{
+        form{
+            .form-control{
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+// 
+// ---------------------- MAIN PAGE STYLES -----------------------
+// 
+
+/*=====================
+|NAVBAR styles 
+=====================*/
+
+.navbar-default {
+    .navbar-right {
+        li {
+            width: 15rem;
+            a {
+                padding: 1rem 0 0;
+                span {
+                    display: inline;
+                    font-size: 0px;
+                }
+                img {
+                    width: 3rem;
+                    display: inline;
+                    margin: 0 1rem;
+                }
+            }
+        }
+    }
+}
+
+// ---------------- Footer
+footer {
+    position: absolute;
+    bottom: 0;
+    background: cadetblue;
+    left: 0;
+    right: 0;
+    padding: 2rem 0;
+    color: #fff;
+    font-size: 1.6rem;
+    p {
+        margin-bottom: 0;
+    }
+}
