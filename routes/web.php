@@ -72,4 +72,4 @@ Route::post('/category/store', 'CategoryController@store')->name('category.store
 
 //Orders Routes
 Route::post('/order/store', 'OrdersController@store')->name('order.store');
-Route::get('/order/delete/{id}', 'OrdersController@delete')->name('order.delete');
+// Route::get('/order/delete/{id}', 'OrdersController@delete')->name('order.delete');

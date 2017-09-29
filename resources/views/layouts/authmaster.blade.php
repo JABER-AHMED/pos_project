@@ -33,14 +33,13 @@
     @include('partials.message') 
     @yield('content')
     </div>
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"
-    integrity="sha256-Xxq2X+KtazgaGuA2cWR1v3jJsuMJUozyIXDB3e793L8="
-    crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"
     integrity="sha256-HmfY28yh9v2U4HfIXC+0D6HCdWyZI42qjaiCFEJgpo0="
     crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{asset('src/js/bootstrap.min.js')}}"></script>
-     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+     
      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
      <!-- DataTables JavaScript -->
@@ -98,15 +97,37 @@
             var amt = $(this).val()-0;
             t += amt;
         });
-        $('.total').html(t);
+         $('.sub-total1').html(t);
     }
-    $(function () {
+    //$('.total').html(t);
+    $(document).ready(function () {
         $('.getmoney').change(function(){
-            var total = $('.total').html();
+            var total = parseInt($('.total').html());
             var getmoney = $(this).val();
             var t = getmoney - total;
-            $('.backmoney').val(t).toFixed(2);
+            $('.backmoney').val(t);
         });
+
+        //table add js 
+            $("#btn-add-form").click(function(){ 
+            var name = $(".name_form option:selected").text();
+            var quantity = $(".quantity_form").val(); 
+            var price = $(".price_form").val(); 
+            var total = $(".total_form").val();
+            //var delete = $("#btn-delete-form");
+            // var markup = "<tr><td>" + name + "</td><td>" + quantity + "</td><td>" + price + "</td><td>" + total + "</td><td>" + delete + "</td></tr>";
+            var markup = '<tr><td>' + name + '</td>' +
+            '<td>' + quantity + '</td>' + 
+            '<td>' + price + '</td>' +
+            '<td>' + total + '</td>' +
+            '<td>' + delete + '</td></tr>';
+            $(".entry_list").append(markup);
+            }); 
+             
+            // Find and remove selected table rows 
+            $("#btn-delete-form").click(function(){ 
+                $(this).parents("tr").remove();
+            }); 
     });
 
 
