@@ -12,6 +12,7 @@
 */
 
 Route::get('/home', 'HomeController@index')->middleware('manager');
+Route::get('/invoice', 'HomeController@invoice');
 
 
 Route::group(['middleware' => 'visitors'], function(){
@@ -73,3 +74,8 @@ Route::post('/category/store', 'CategoryController@store')->name('category.store
 //Orders Routes
 Route::post('/order/store', 'OrdersController@store')->name('order.store');
 // Route::get('/order/delete/{id}', 'OrdersController@delete')->name('order.delete');
+
+Route::get('select2-autocomplete-ajax', 'HomeController@dataAjax');
+
+// Route::get('search',array('as'=>'search','uses'=>'HomeController@index'));
+// Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'HomeController@autocomplete'));

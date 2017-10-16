@@ -10,29 +10,16 @@ class OrdersController extends Controller
 {
     public function store(Request $request)
     {
-    	 $this->validate($request, array(
+    	 foreach($request->product_id as $key => $value){
 
-    	 	'qty' => 'required',
-    	 	'price' => 'required',
-    	 	'amount' => 'required',
-    	 	'product_id' => 'required'
-    	));
+            $data = array(
 
-    	 $order = new Order;
-
-    	 $order->fill($request->all());
-
-    	 $order->save();
-
-    	 return redirect('/home');
-    }
-
-    public function delete($id)
-    {
-    	$order = Order::find($id);
-
-        $order->delete();
-
-        return redirect()->back();
+                'product_id' => $value,
+                'qty' => $request->qty[$key],
+                'price' => $request->price[$key],
+                'amount' => $request->amount[$key]
+            );
+            Order::insert($data);
+         }
     }
 }

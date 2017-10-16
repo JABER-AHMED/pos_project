@@ -10,11 +10,10 @@ class Order extends Model
     {
     	return $this->belongsTo('App\Product');
     }
-
-     public function user()
+    public function Invoice()
     {
-    	return $this->belongsTo('App\User');
+    	return $this->belongsTo('App\Invoice');
     }
 
-    protected $fillable = ['qty', 'price', 'amount', 'product_id'];
+    protected $fillable = ['qty', 'price', 'amount', 'product_id', 'invoice_id'];
 }

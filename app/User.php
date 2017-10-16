@@ -32,8 +32,8 @@ class User extends Authenticatable
         return static::whereEmail($email)->first();
     }
 
-     public function order()
+    public function Invoices()
     {
-        return $this->belongsTo('App\Order');
+        return $this->belongsToMany('App\Invoice');
     }
 }
