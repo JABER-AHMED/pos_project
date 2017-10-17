@@ -16,5 +16,5 @@ class Invoice extends Model
     	return $this->belongsTo('App\User');
     }
 
-    protected $fillable = ['date', 'user_id'];
+    protected $fillable = ['date', 'user_id', 'vat', 'discont', 'total_price'];
 }

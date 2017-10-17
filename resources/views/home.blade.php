@@ -44,16 +44,19 @@
                                     </td>
                                     <td>
                                         <select class="form-control product_id" name="product_id[]">
+                                            @foreach($products as $product)
+                                            <option data-price="{{ $product->price }}" value="{{$product->id }}">{{ $product->name }}</option>
+                                            @endforeach
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text" class="qty form-control" name="qty[]" value="{{ old('email') }}">
+                                        <input type="number" class="qty form-control" name="qty[]" value="{{ old('email') }}">
                                     </td>
                                     <td>
-                                        <input type="text" class="price form-control" name="price[]" value="{{ old('email') }}">
+                                        <input type="number" class="price form-control" name="price[]" value="{{ old('email') }}">
                                     </td>
                                     <td>
-                                        <input type="text" class="amount form-control" name="amount[]">
+                                        <input type="number" class="amount form-control" name="amount[]" readonly>
                                     </td>
                                     <td>
                                         <input type="button" class="btn btn-danger delete" value="x">
@@ -71,7 +74,7 @@
                                         <th class="text-center">Sub Total</th>
                                         <td class="text-center"><input type="number" name='sub_total' placeholder='0.00' class="form-control sub_total" id="sub_total" readonly/></td>
                                     </tr>
-                                    <tr>
+                                     <tr>
                                         <th class="text-center">Vat</th>
                                         <td class="text-center">
                                             <div class="input-group mb-2 mb-sm-0">
@@ -81,8 +84,21 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <th class="text-center">Discount</th>
+                                        <td class="text-center">
+                                            <div class="input-group mb-2 mb-sm-0">
+                                                <input type="number" class="form-control" id="discount" placeholder="0">
+                                                <div class="input-group-addon">%</div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                     <tr>
                                         <th class="text-center">Vat Amount</th>
-                                        <td class="text-center"><input type="number" name='tax_amount' id="tax_amount" placeholder='0.00' class="form-control" readonly/></td>
+                                        <td class="text-center"><input type="number" name='vat_amount' id="vat_amount" placeholder='0.00' class="form-control" readonly/></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center">Discount Amount</th>
+                                        <td class="text-center"><input type="number" name='discount_amount' id="discount_amount" placeholder='0.00' class="form-control" readonly/></td>
                                     </tr>
                                     <tr>
                                         <th class="text-center">Grand Total</th>

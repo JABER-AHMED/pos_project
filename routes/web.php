@@ -13,6 +13,8 @@
 
 Route::get('/home', 'HomeController@index')->middleware('manager');
 Route::get('/invoice', 'HomeController@invoice');
+Route::get('/invoicelist', 'HomeController@invoiceList');
+Route::get('/invoice/index/{id}', 'HomeController@invoiceIndex')->name('invoice.index');
 
 
 Route::group(['middleware' => 'visitors'], function(){

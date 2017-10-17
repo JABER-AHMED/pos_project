@@ -35,6 +35,20 @@ class HomeController extends Controller
 
         return response()->json($data);
     }
+
+    public function invoiceList()
+    {
+        $invoices = Invoice::all();
+        return View('invoice.list')->withInvoices($invoices);
+    }
+
+    public function invoiceIndex($id)
+    {
+        $invoice = Invoice::find($id);
+        $orders = Order::all();
+        $product = Product::all('name');
+        return View('invoice.index')->withInvoice($invoice)->withOrders($orders)->withProduct($product);
+    }
 }
 
 

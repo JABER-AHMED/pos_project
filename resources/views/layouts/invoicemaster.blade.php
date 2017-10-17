@@ -14,11 +14,17 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+        <!-- DataTables CSS -->
+        <link href="{{asset('admin/css/dataTables.bootstrap.css')}}" rel="stylesheet">
+
+        <!-- DataTables Responsive CSS -->
+        <link href="{{asset('admin/css/dataTables.responsive.css')}}" rel="stylesheet">
 
          <link rel="stylesheet" type="text/css" href="{{ asset('src/css/bootstrap.min.css')}}">
 
          <link href="{{asset('src/css/style.min.css')}}" rel="stylesheet">
+
+         <link href="{{asset('src/css/invoice.css')}}" rel="stylesheet">
 
     </head>
     <body>
@@ -34,18 +40,23 @@
     crossorigin="anonymous"></script>
     <script src="{{asset('src/js/main.js')}}"></script>
     <script type="text/javascript" src="{{asset('src/js/bootstrap.min.js')}}"></script>
+    <!-- DataTables JavaScript -->
+    <script src="{{asset('admin/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('admin/js/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{asset('admin/js/dataTables.responsive.js')}}"></script>
      
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
      <!-- DataTables JavaScript -->
 
-    <script type="text/javascript" >
-        $(document).ready(function () {
-            $(".select2-multi").select2({
+       <script>
 
-                maximumSelectionLength: 1
+        $(document).ready(function () {
+            $('#dataTables-example').DataTable({
+                responsive: true
             });
         });
+
     </script>
+
  
   </body>
 
