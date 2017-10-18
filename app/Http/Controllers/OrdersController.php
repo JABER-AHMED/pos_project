@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Input;
 use App\Order;
 use App\Product;
 use App\Invoice;
@@ -31,16 +32,26 @@ class OrdersController extends Controller
           $invoice->save();
 
          foreach($request->product_id as $key => $value){
-
+            
+            $order = new Order();
+            
             $data = array(
 
-                'product_id' => $value,
                 'invoice_id' => $invoice->id,
                 'qty' => $request->qty[$key],
                 'price' => $request->price[$key],
-                'amount' => $request->amount[$key] 
+                'amount' => $request->amount[$key]
             );
             Order::insert($data);
+            $orderID = $order->orderBy('id')->pluck('id')->last();
+            // $order->products()->sync($request->products, false);
+
+            $data1 = array(
+              'product_id' => $value,
+              'order_id' => $orderID
+            );
+             //dd($data1);
+            $order->products()->attach($data1);
          }
     }
 }
