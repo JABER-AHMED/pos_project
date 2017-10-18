@@ -11,9 +11,14 @@ use Sentinel;
 
 class OrdersController extends Controller
 {
+    
+
     public function store(Request $request)
     {
-    	  $this->validate($request, array(
+    	  
+        // dd($request->product_id);
+
+        $this->validate($request, array(
 
                 'total_amount' => 'required',
                 'date' => 'required'
@@ -33,8 +38,6 @@ class OrdersController extends Controller
 
          foreach($request->product_id as $key => $value){
             
-            $order = new Order();
-            
             $data = array(
 
                 'invoice_id' => $invoice->id,
@@ -42,16 +45,22 @@ class OrdersController extends Controller
                 'price' => $request->price[$key],
                 'amount' => $request->amount[$key]
             );
-            Order::insert($data);
-            $orderID = $order->orderBy('id')->pluck('id')->last();
-            // $order->products()->sync($request->products, false);
 
-            $data1 = array(
-              'product_id' => $value,
-              'order_id' => $orderID
-            );
-             //dd($data1);
-            $order->products()->attach($data1);
+             $order = $this->storeOrder($data);
+          
+             $order->products()->attach($value);
          }
     }
+
+    public function storeOrder(array $data)
+    {
+        return Order::create($data);
+    }
+
+
+    // public function getInvoice()
+    // {
+    //     $invoices = Invoice::with('orders.product')->get();
+
+    // }
 }
