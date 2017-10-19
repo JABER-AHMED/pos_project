@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    public function products()
+    public function product()
     {
-    	return $this->belongsToMany('App\Product');
+    	return $this->belongsTo('App\Product');
     }
     public function Invoice()
     {
     	return $this->belongsTo('App\Invoice');
     }
 
-    protected $fillable = ['qty', 'price', 'amount', 'invoice_id'];
+    protected $fillable = ['qty', 'price', 'amount', 'invoice_id', 'product_id'];
 }

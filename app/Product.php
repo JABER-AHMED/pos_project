@@ -18,8 +18,8 @@ class Product extends Model
     	return $this->belongstoMany('App\Supply');
     }
 
-    public function orders()
+    public function order()
     {
-    	return $this->belongstoMany('App\Order');
+    	return $this->belongsTo('App\Order');
     }
 }

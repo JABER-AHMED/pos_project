@@ -44,10 +44,12 @@ class HomeController extends Controller
 
     public function invoiceIndex($id)
     {
-        $invoice = Invoice::find($id);
-        $orders = Order::all();
-        $product = Product::all('name');
-        return View('invoice.index')->withInvoice($invoice)->withOrders($orders)->withProduct($product);
+        //$invoice = Invoice::with('orders')->find($id);
+        $invoices = Invoice::with('orders')->find($id);
+        return View('invoice.index')->withInvoices($invoices);
+        //dd($invoices);
+
+        //return View('invoice.index')->withInvoices($invoice);
     }
 }
 

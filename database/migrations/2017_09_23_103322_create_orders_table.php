@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->integer('price');
             $table->integer('amount');
             $table->integer('invoice_id')->unsigned();
+            $table->integer('product_id')->unsigned();
             $table->timestamps();
         });
     }

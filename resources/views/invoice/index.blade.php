@@ -9,8 +9,8 @@
     
     <div id="invoice-top">
       <div class="title">
-        <h1>Invoice #{{$invoice->id}}</h1>
-        <p>Issued: {{$invoice->date}}</p>
+        <h1>Invoice #</h1>
+        <p>Issued: </p>
       </div><!--End Title-->
     </div><!--End InvoiceTop-->
     
@@ -24,12 +24,16 @@
             <td class="text-center"><h2>Price</h2></td>
             <td class="text-center"><h2>Sub-total</h2></td>
           </tr>
+          @foreach($invoices as $invoice)
           <tr class="service">
-            <td class="tableitem"><p class="itemtext">Benson</p></td>
+            @foreach($invoice->orders as $order)
+            <td class="tableitem"><p class="itemtext">{{$order->product_id}}</p></td>
             <td class="tableitem"><p class="itemtext"></p></td>
             <td class="tableitem"><p class="itemtext">$75</p></td>
             <td class="tableitem"><p class="itemtext">$375.00</p></td>
+            @endforeach
           </tr>
+          @endforeach
           <tr class="tabletitle">
             <td></td>
             <td></td>
