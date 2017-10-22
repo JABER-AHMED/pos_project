@@ -2,14 +2,31 @@
 @section('title')
 @endsection
 @section('content')
-<div class="container">
     <div class="row clearfix">
         <div class="col-md-10 col-md-offset-1">
             <div class="panel panel-defaul">
-                <div class="panel-body">
+                <div class="panel-body" style="border: 1px solid #ddd">
                     <form method="post" action="{{route('order.store')}}">
                         {{csrf_field()}}
                         <div class="row clearfix" style="margin-top:20px">
+                           <div class="pull-left col-md-4">
+                                <table class="table table-bordered table-hover" id="tab_logic_total">
+                                    <tbody>
+                                        <tr>
+                                            <th class="text-center">Name</th>
+                                            <td class="text-center"><input type="text" name='c_name' class="form-control"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">Address:</th>
+                                            <td class="text-center"><input type="text" name='address' class="form-control"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th class="text-center">Number:</th>
+                                            <td class="text-center"><input type="text" name='phone' class="form-control"/></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="pull-right col-md-4">
                                 <table class="table table-bordered table-hover" id="tab_logic_total">
                                     <tbody>
@@ -27,14 +44,14 @@
                         </div>
                         {{--  row clearfix  --}}
                         <table class="table table-bordered table-hover" id="tab_logic">
-                            <thead style="background-color: #41B883;color: #ffffff;font-size: 1.7rem;">
+                            <thead style="background-color: #428BCA;color: #ffffff;font-size: 1.7rem;">
                                 <tr >
                                     <th class="text-center">ID</th>
                                     <th class="text-center">Product Name</th>
                                     <th class="text-center">Quantity</th>
                                     <th class="text-center">Price</th>
                                     <th class="text-center">Amount</th>
-                                    <th class="text-center">Delete</th>
+                                    <th class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody class="tablebody">
@@ -45,6 +62,7 @@
                                     <td>
                                         <select class="form-control product_id" name="product_id[]">
                                             @foreach($products as $product)
+                                            <option>No Items</option>
                                             <option data-price="{{ $product->price }}" value="{{$product->id }}">{{ $product->name }}</option>
                                             @endforeach
                                         </select>
@@ -59,12 +77,13 @@
                                         <input type="number" class="amount form-control" name="amount[]" readonly>
                                     </td>
                                     <td>
-                                        <input type="button" class="btn btn-danger delete" value="x">
+                                        <i type="button" class="btn btn-danger delete fa fa-trash-o" aria-hidden="true"></i>
                                     </td>
                                 </tr>
                             <tr id='addr1'></tr>
                         </tbody>
                     </table>
+                    <a id="add_row" class="btn btn-primary pull-left">Add Row</a>
                     {{--  table  --}}
                     <div class="row clearfix" style="margin-top:20px">
                         <div class="pull-right col-md-4">
@@ -119,7 +138,5 @@
     {{--  col  --}}
 </div>
 {{--  row  --}}
-<a id="add_row" class="btn btn-default pull-left">Add Row</a><a id='delete_row' class="pull-right btn btn-default">Delete Row</a>
-</div>
-{{--  container  --}}
+<!-- <a id='delete_row' class="pull-right btn btn-default">Delete Row</a> -->
 @endsection

@@ -39,7 +39,7 @@
 
 <body>
     @include('partials.header')
-    <div class="container-fluid">
+    <div class="container">
         @include('partials.message') @yield('content')
     </div>
 
@@ -73,6 +73,17 @@
                 var amt = $(this).val() - 0;
                 t += amt;
             });
+
+            total = 0;
+                $('.amount').each(function() {
+                    total += parseInt($(this).val());
+                });
+                $('#sub_total').val(total.toFixed(2));
+                var tax_sum = total / 100 * $('#tax').val();
+                $('#vat_amount').val(tax_sum.toFixed(2));
+                var discount_sum = total / 100 * $('#discount').val();
+                $('#discount_amount').val(discount_sum.toFixed(2));
+                $('#total_amount').val(((total + tax_sum) - discount_sum).toFixed(2));
         }
         $(function() {
             $('.getmoney').change(function() {
@@ -87,10 +98,6 @@
                 // Run code
                 $('.tr_select').hide();
             });
-
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = "{{asset('src/js/tableSelect.js')}}";
 
             var i = 0;
 
@@ -116,7 +123,7 @@
                     '<td><input type="number" class="price form-control" name="price[]" value="{{ old('
                     email ') }}"></td>' +
                     '<td><input type="number" class="amount form-control" name="amount[]" readonly></td>' +
-                    '<td><input type="button" class="btn btn-danger delete" value="x"></td>');
+                    '<td><i type="button" class="btn btn-danger delete fa fa-trash-o" aria-hidden="true"></i></td>');
                 $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
                 i++;
 
@@ -141,11 +148,9 @@
                 });
             });
 
-            $("#delete_row").click(function() {
-                if (i > 1) {
-                    $("#addr" + (i - 1)).html('');
-                    i--;
-                }
+            $('.tablebody').delegate('.delete', 'click', function () {
+                $(this).parent().parent().remove();
+                 totalAmount();
             });
 
             $('.tablebody').delegate('.product_id', 'change', function() {
@@ -175,11 +180,11 @@
             });
 
             $('#tax').on('keyup change', function() {
-                calc_total();
+                totalAmount();
             });
 
             $('#discount').on('keyup change', function() {
-                calc_total();
+                totalAmount();
             });
 
 
@@ -191,26 +196,10 @@
                         var price = $(this).find('.price').val();
                         $(this).find('.amount').val(qty * price);
 
-                        calc_total();
+                        totalAmount();
                     }
                 });
             }
-
-            function calc_total() {
-                total = 0;
-                $('.amount').each(function() {
-                    total += parseInt($(this).val());
-                });
-                $('#sub_total').val(total.toFixed(2));
-                var tax_sum = total / 100 * $('#tax').val();
-                $('#vat_amount').val(tax_sum.toFixed(2));
-                var discount_sum = total / 100 * $('#discount').val();
-                $('#discount_amount').val(discount_sum.toFixed(2));
-                $('#total_amount').val((total - (tax_sum+discount_sum)).toFixed(2));
-
-                console.log(total);
-            }
-
         });
     </script>
 

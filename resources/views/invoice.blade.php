@@ -1,91 +1,215 @@
-@extends('layouts.invoicemaster')
-@section('title')
-@endsection
-@section('content')
-<div class="container">
-  <div class="row clearfix" style="margin-top:20px">
-    <div class="pull-right col-md-4">
-      <table class="table table-bordered table-hover" id="tab_logic_total">
-        <tbody>
-          <tr>
-            <th class="text-center">INVOICE#</th>
-            <td class="text-center"><input type="text" name='invoice' class="form-control"/></td>
-          </tr>
-          <tr>
-            <th class="text-center">Date</th>
-            <td class="text-center"><input type="text" name='date' class="form-control"/></td>
-          </tr>
-        </tbody>
-      </table>
+<!doctype html>
+<html lang="{{ config('app.locale') }}">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@yield('title')</title>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link rel="stylesheet" href="{{asset('src/css/font-awesome.min.css')}}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('src/css/bootstrap.min.css')}}">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('src/css/selectize.bootstrap3.css')}}">
+
+
+    <link href="{{asset('src/css/style.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" /> {{-- //javascript scripts --}}
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js" integrity="sha256-HmfY28yh9v2U4HfIXC+0D6HCdWyZI42qjaiCFEJgpo0=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{asset('src/js/bootstrap.min.js')}}"></script>
+
+    <script type="text/javascript" src="{{asset('src/js/selectize.js')}}"></script>
+
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+
+</head>
+
+<body>
+    @include('partials.header')
+    <div class="container-fluid">
+        @include('partials.message') @yield('content')
     </div>
-  </div>
-  <!-- Table header -->
-  <div class="row clearfix">
-    <div class="col-md-12">
-      <table class="table table-condensed table-hover" id="tab_logic" style="border:1px solid #ededed;">
-        <thead style="background-color: #41B883;color: #ffffff;font-size: 1.7rem;">
-          <tr>
-            <th class="text-center"> # </th>
-            <th class="text-center"> Product </th>
-            <th class="text-center"> Qty </th>
-            <th class="text-center"> Price </th>
-            <th class="text-center"> Total </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr id='addr0'>
-            <td>1</td>
-            <td><select class="product_id form-control select2-multi name_form" name="product_id" multiple="multiple" id="">
-              @foreach($products as $product)
-              <option data-price="{{ $product->price }}" value="{{$product->id}}">{{$product->name}}</option>
-              @endforeach
-            </select></td>
-            <td><input type="number" name='qty' placeholder='Enter Qty' class="form-control qty" step="0" min="0" /></td>
-            <td><input type="number" name='price' placeholder='Enter Unit Price' class="form-control price" step="0.00" min="0"
-            /></td>
-            <td><input type="number" name='total' placeholder='0.00' class="form-control total" readonly/></td>
-          </tr>
-        <tr id='addr1'></tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-<!-- Table body -->
-<div class="row clearfix">
-  <div class="col-md-12">
-    <button id="add_row" class="btn btn-default pull-left btn-info" style="background-color: #41B883;">Add Product</button>
-    <button id='delete_row' class="pull-right btn btn-default btn-danger">Delete Product</button>
-  </div>
-</div>
-<!-- Amount calculation section -->
-<div class="row clearfix" style="margin-top:20px">
-  <div class="pull-right col-md-4">
-    <table class="table table-bordered table-hover" id="tab_logic_total">
-      <tbody>
-        <tr>
-          <th class="text-center">Sub Total</th>
-          <td class="text-center"><input type="number" name='sub_total' placeholder='0.00' class="form-control" id="sub_total" readonly/></td>
-        </tr>
-        <tr>
-          <th class="text-center">Vat</th>
-          <td class="text-center">
-            <div class="input-group mb-2 mb-sm-0">
-              <input type="number" class="form-control" id="tax" placeholder="0">
-              <div class="input-group-addon">%</div>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <th class="text-center">Vat Amount</th>
-          <td class="text-center"><input type="number" name='tax_amount' id="tax_amount" placeholder='0.00' class="form-control" readonly/></td>
-        </tr>
-        <tr>
-          <th class="text-center">Grand Total</th>
-          <td class="text-center"><input type="number" name='total_amount' id="total_amount" placeholder='0.00' class="form-control" readonly/></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-</div>
-@endsection
+
+
+    <script type="text/javascript">
+        $('.product_id').select2({
+            placeholder: 'Select an item',
+            ajax: {
+                url: '/select2-autocomplete-ajax',
+                dataType: 'json',
+                delay: 100,
+                processResults: function(data) {
+                    return {
+                        results: $.map(data, function(item) {
+                            return {
+                                text: item.name,
+                                id: item.id
+                            }
+                        })
+                    };
+                },
+                cache: true
+            }
+        });
+    </script>
+
+    <script type="text/javascript">
+        function totalAmount() {
+            var t = 0;
+            $('.amount').each(function(i, e) {
+                var amt = $(this).val() - 0;
+                t += amt;
+            });
+        }
+        $(function() {
+            $('.getmoney').change(function() {
+                var total = $('.total').html();
+                var getmoney = $(this).val();
+                var t = getmoney - total;
+                $('.backmoney').val(t).toFixed(2);
+            });
+
+
+            $(window).load(function() {
+                // Run code
+                $('.tr_select').hide();
+            });
+
+            var i = 0;
+
+            $('#hideshow').on('click', function(event) {
+                $('#content').removeClass('hidden');
+                $('#content').addClass('show');
+                $('#content').toggle('show');
+            });
+
+
+        });
+
+        //add-remove table
+        $(document).ready(function() {
+            var product = $('.product_id').html();
+            var i = 1;
+
+            $("#add_row").click(function() {
+
+                $('#addr' + i).html('<td>' + (i + 1) + '</td>' + '<td><select class="form-control product_id " name="product_id[]">' + product + '</select></td>' +
+                    '<td><input type="number" class="qty form-control" name="qty[]" value="{{ old('
+                    email ') }}"></td>' +
+                    '<td><input type="number" class="price form-control" name="price[]" value="{{ old('
+                    email ') }}"></td>' +
+                    '<td><input type="number" class="amount form-control" name="amount[]" readonly></td>' +
+                    '<td><input type="button" class="btn btn-danger delete" value="x"></td>');
+                $('#tab_logic').append('<tr id="addr' + (i + 1) + '"></tr>');
+                i++;
+
+                $('.product_id').select2({
+                    placeholder: 'Select an item',
+                    ajax: {
+                        url: '/select2-autocomplete-ajax',
+                        dataType: 'json',
+                        delay: 100,
+                        processResults: function(data) {
+                            return {
+                                results: $.map(data, function(item) {
+                                    return {
+                                        text: item.name,
+                                        id: item.id
+                                    }
+                                })
+                            };
+                        },
+                        cache: true
+                    }
+                });
+            });
+
+            $("#delete_row").click(function() {
+                if (i > 1) {
+                    $("#addr" + (i - 1)).html('');
+                    i--;
+                }
+            });
+
+            $('.tablebody').delegate('.product_id', 'change', function() {
+                var tr = $(this).parent().parent();
+                var price = tr.find('.product_id option:selected').attr('data-price');
+                tr.find('.price').val(price);
+
+                var qty = tr.find('.qty').val() - 0;
+                var price = tr.find('.price').val() - 0;
+
+                var total = (qty * price);
+                tr.find('.amount').val(total);
+                totalAmount();
+            });
+            $('.tablebody').delegate('.qty', 'keyup', function() {
+                var tr = $(this).parent().parent();
+                var qty = tr.find('.qty').val() - 0;
+                var price = tr.find('.price').val() - 0;
+
+                var total = (qty * price);
+                tr.find('.amount').val(total);
+                totalAmount();
+            });
+
+            $('#tab_logic tbody tr').on('keyup change', function() {
+                calc();
+            });
+
+            $('#tax').on('keyup change', function() {
+                calc_total();
+            });
+
+            $('#discount').on('keyup change', function() {
+                calc_total();
+            });
+
+
+            function calc() {
+                $('#tab_logic tbody tr').each(function(i, element) {
+                    var html = $(this).html();
+                    if (html !== '') {
+                        var qty = $(this).find('.qty').val();
+                        var price = $(this).find('.price').val();
+                        $(this).find('.amount').val(qty * price);
+
+                        calc_total();
+                    }
+                });
+            }
+
+            function calc_total() {
+                total = 0;
+                $('.amount').each(function() {
+                    total += parseInt($(this).val());
+                });
+                $('#sub_total').val(total.toFixed(2));
+                var tax_sum = total / 100 * $('#tax').val();
+                $('#vat_amount').val(tax_sum.toFixed(2));
+                var discount_sum = total / 100 * $('#discount').val();
+                $('#discount_amount').val(discount_sum.toFixed(2));
+                $('#total_amount').val((total - (tax_sum+discount_sum)).toFixed(2));
+
+                console.log(total);
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>

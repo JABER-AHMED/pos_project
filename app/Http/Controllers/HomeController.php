@@ -51,7 +51,7 @@ class HomeController extends Controller
         ->where('orders.invoice_id', $id)
         ->get();
 
-        //dd($invoice);
+        //dd($invoices);
 
         return view('invoice.index')->withInvoices($invoices)->withInvoice($invoice);
     }
