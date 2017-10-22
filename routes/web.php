@@ -11,10 +11,11 @@
 |
 */
 
-Route::get('/home', 'HomeController@index')->middleware('manager');
+Route::get('/home', 'HomeController@CreateOrders')->middleware('manager');
 Route::get('/invoice', 'HomeController@invoice');
 Route::get('/invoicelist', 'HomeController@invoiceList');
 Route::get('/invoice/index/{id}', 'HomeController@invoiceIndex')->name('invoice.index');
+Route::get('/invoice/delete/{id}', 'OrdersController@delete')->name('invoice.delete');
 
 
 Route::group(['middleware' => 'visitors'], function(){

@@ -19,10 +19,10 @@
       <div id="table">
         <table>
           <tr class="tabletitle">
-            <td class="text-center"><h2>Product Name</h2></td>
-            <td class="text-center"><h2>Quantity</h2></td>
-            <td class="text-center"><h2>Price</h2></td>
-            <td class="text-center"><h2>Sub-total</h2></td>
+            <td class="text-left"><h2>Product Name</h2></td>
+            <td class="text-left"><h2>Quantity</h2></td>
+            <td class="text-left"><h2>Price</h2></td>
+            <td class="text-left"><h2>Sub-total</h2></td>
           </tr>
           @foreach($invoices as $product)
           <tr class="service">

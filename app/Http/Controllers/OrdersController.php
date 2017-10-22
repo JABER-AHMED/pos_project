@@ -56,4 +56,13 @@ class OrdersController extends Controller
     // {
     //     return Order::create($data);
     // }
+
+    public function delete($id)
+    {
+       $invoice = Invoice::find($id);
+
+       $invoice->delete();
+
+       return redirect()->back();
+    }
 }

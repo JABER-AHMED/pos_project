@@ -10,7 +10,7 @@ use App\Invoice;
 
 class HomeController extends Controller
 {
-     public function index()
+     public function CreateOrders()
      {
      	$orders = Order::all();
      	$sum = Order::sum('amount');
