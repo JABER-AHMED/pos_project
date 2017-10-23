@@ -49,7 +49,7 @@ class OrdersController extends Controller
           
              // $order->products()->attach($value);
          }
-         return redirect()->back();
+         return redirect()->route('invoice.index', $invoice->id);
     }
 
     // public function storeOrder(array $data)

@@ -39,7 +39,6 @@
                                     <td>{{$invoice->date}}</td>
                                     <td class="text-center">
                                         <a title="Delete" href="{{route('invoice.delete', $invoice->id)}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
-                                        <a title="Edit" href="" class="btn btn-success"><i class="fa fa-edit"></i></a>
                                         <a title="View" href="{{route('invoice.index', $invoice->id)}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>

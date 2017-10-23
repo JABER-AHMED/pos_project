@@ -87,7 +87,7 @@
         }
         $(function() {
             $('.getmoney').change(function() {
-                var total = $('.total').html();
+                var total = $('#total_amount').val();
                 var getmoney = $(this).val();
                 var t = getmoney - total;
                 $('.backmoney').val(t).toFixed(2);

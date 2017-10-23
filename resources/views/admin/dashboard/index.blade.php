@@ -138,7 +138,7 @@
 
 @section('scripts')
 
-     <script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script>
+     {{-- <script src="{{asset('admin/js/jquery-3.1.1.min.js')}}"></script> --}}
      {!! Charts::scripts() !!}
      {!! $chart->script() !!}
 

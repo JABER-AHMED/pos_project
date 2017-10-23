@@ -22,8 +22,6 @@
 
          <link rel="stylesheet" type="text/css" href="{{ asset('src/css/bootstrap.min.css')}}">
 
-         <link href="{{asset('src/css/style.min.css')}}" rel="stylesheet">
-
          <link href="{{asset('src/css/invoice.css')}}" rel="stylesheet">
 
     </head>
@@ -56,6 +54,17 @@
         });
 
     </script>
+<script>
+    $(document).ready(function(){
+    $("#printButton").click(function(){
+        $("#printButton").css("display","none");
+        window.print();
+    });
+
+    $("#printButton").css("display","block");
+    return false;
+});
+</script>
 
  
   </body>
